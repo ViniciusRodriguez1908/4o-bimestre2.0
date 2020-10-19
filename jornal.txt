@@ -1,0 +1,76 @@
+CREATE DATABASE Jornal;
+
+
+use jornal;
+
+CREATE TABLE categoria (
+codCategoria int PRIMARY KEY,
+categoria varchar(255)
+);
+
+CREATE TABLE turma (
+codTurma int PRIMARY KEY,
+turma varchar(99)
+);
+
+CREATE TABLE dia (
+dia int PRIMARY KEY
+);
+
+
+CREATE TABLE ano (
+ano int PRIMARY KEY
+);
+
+CREATE TABLE mes (
+mes int PRIMARY KEY
+);
+
+
+CREATE TABLE redator (
+ codRedator int PRIMARY KEY auto_increment,
+nome varchar(99),
+ 
+sobrenome varchar(255),
+cidade varchar(99),
+
+ddd varchar(99),
+
+email varchar(99),
+
+codTurma int,
+
+dia int,
+
+mes int,
+
+ano int,
+
+FOREIGN KEY(codTurma) REFERENCES turma (codTurma) ON DELETE CASCADE ON UPDATE CASCADE,
+ FOREIGN KEY(dia) REFERENCES dia (dia) ON DELETE CASCADE ON UPDATE CASCADE,
+ FOREIGN KEY(mes) REFERENCES mes (mes) ON DELETE CASCADE ON UPDATE CASCADE,
+ FOREIGN KEY(ano) REFERENCES ano (ano) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE noticia (
+codNoticia int PRIMARY KEY auto_increment,
+
+noticia text(99999999),
+
+titulo varchar(255),
+
+codRedator int,
+
+codCategoria int,
+
+dia int,
+
+mes int,
+
+ano int,
+
+FOREIGN KEY( codRedator) REFERENCES redator (codRedator) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(dia) REFERENCES dia (dia) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(mes) REFERENCES mes (mes) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(ano) REFERENCES ano (ano) ON DELETE CASCADE ON UPDATE CASCADE
+)
